@@ -9,11 +9,28 @@ export default function BookingPage() {
     name: "",
     contact: "",
     venue: "",
-    date: null,
+    date: null as Date | null
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | { value: unknown }>) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const handleSelectChange = (event: any) => {
+    setFormData((prev) => ({
+      ...prev,
+      venue: event.target.value as string, 
+    }));
+  };
+
+  const handleDateChange = (selectedDate: Date | null) => {
+    setFormData((prev) => ({
+      ...prev,
+      date: selectedDate,
+    }));
   };
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -23,7 +40,10 @@ export default function BookingPage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-[400px]">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-lg rounded-lg p-6 space-y-4 w-[400px]"
+      >
         <h2 className="text-2xl font-bold text-center">Venue Booking Form</h2>
 
         <TextField
@@ -51,7 +71,7 @@ export default function BookingPage() {
             id="venue"
             name="venue"
             value={formData.venue}
-            onChange={handleChange}
+            onChange={handleSelectChange} // Fixed Select handling
           >
             <MenuItem value="Bloom">The Bloom Pavilion</MenuItem>
             <MenuItem value="Spark">Spark Space</MenuItem>
@@ -59,9 +79,9 @@ export default function BookingPage() {
           </Select>
         </FormControl>
 
-        <DateReserve />
+        <DateReserve onDateChange={handleDateChange} />
 
-        <Button type="submit" variant="contained" color="primary" fullWidth name="Book Venue">
+        <Button type="submit" variant="contained" color="primary" fullWidth>
           Book Venue
         </Button>
       </form>
