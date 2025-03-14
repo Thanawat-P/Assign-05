@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TextField, Select, MenuItem, Button, FormControl, InputLabel } from "@mui/material";
+import { TextField, Select, MenuItem, Button, FormControl, InputLabel, SelectChangeEvent } from "@mui/material";
 import DateReserve from "@/components/DateReserve";
 
 export default function BookingPage() {
@@ -9,27 +9,20 @@ export default function BookingPage() {
     name: "",
     contact: "",
     venue: "",
-    date: null as Date | null
+    date: null as Date | null,
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
   };
 
-  const handleSelectChange = (event: any) => {
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
     setFormData((prev) => ({
       ...prev,
-      venue: event.target.value as string, 
-    }));
-  };
-
-  const handleDateChange = (selectedDate: Date | null) => {
-    setFormData((prev) => ({
-      ...prev,
-      date: selectedDate,
+      venue: event.target.value,
     }));
   };
 
@@ -52,7 +45,7 @@ export default function BookingPage() {
           label="Name-Lastname"
           name="name"
           value={formData.name}
-          onChange={handleChange}
+          onChange={handleInputChange} // Fixed input handling
         />
 
         <TextField
@@ -61,7 +54,7 @@ export default function BookingPage() {
           label="Contact-Number"
           name="contact"
           value={formData.contact}
-          onChange={handleChange}
+          onChange={handleInputChange} // Fixed input handling
         />
 
         <FormControl fullWidth variant="standard">
@@ -71,7 +64,7 @@ export default function BookingPage() {
             id="venue"
             name="venue"
             value={formData.venue}
-            onChange={handleSelectChange} // Fixed Select handling
+            onChange={handleSelectChange} // Fixed Select handling with correct event type
           >
             <MenuItem value="Bloom">The Bloom Pavilion</MenuItem>
             <MenuItem value="Spark">Spark Space</MenuItem>
@@ -79,7 +72,7 @@ export default function BookingPage() {
           </Select>
         </FormControl>
 
-        <DateReserve onDateChange={handleDateChange} />
+        <DateReserve/>
 
         <Button type="submit" variant="contained" color="primary" fullWidth>
           Book Venue
