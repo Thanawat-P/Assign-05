@@ -1,0 +1,62 @@
+/* Main Page */
+.page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background-color: #f3f4f6; /* Tailwind's gray-100 */
+    min-height: 100vh;
+  }
+  
+  /* Title */
+  .title {
+    font-size: 1.875rem; /* Tailwind's text-3xl */
+    font-weight: bold;
+    color: #1f2937; /* Tailwind's gray-800 */
+  }
+  
+  /* Form Container */
+  .formContainer {
+    width: 100%;
+    max-width: 32rem; /* Tailwind's max-w-lg */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tailwind's shadow-lg */
+    border-radius: 0.5rem; /* Tailwind's rounded-lg */
+    padding: 1.5rem; /* Tailwind's p-6 */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Input Group */
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* Label */
+  .label {
+    font-size: 1rem; /* Tailwind's text-md */
+    font-weight: 500;
+    color: #374151; /* Tailwind's gray-700 */
+  }
+  
+  /* Button */
+  .button {
+    width: 100%;
+    background-color: #0284c7; /* Tailwind's bg-sky-600 */
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #4338ca; /* Tailwind's hover:bg-indigo-600 */
+  }
+  
